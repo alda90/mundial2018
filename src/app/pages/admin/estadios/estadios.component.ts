@@ -54,11 +54,11 @@ export class EstadiosComponent implements OnInit {
 
   }
 
-  editModal(estadio: Estadio) {
+  editModal(estadio: Estadio, idsede: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar Estadio';
     this.estadio = estadio;
-    this.estadio.sede = estadio.sede._id;
+    this.estadio.sede = idsede;
 
   }
 
