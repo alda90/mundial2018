@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   navigate(ruta: string) {
 
     if (ruta === 'admin') {
-      this.router.navigate(['/admin/arbitros']);
+      this.router.navigate(['/admin/partidos']);
     } else if (ruta === 'home') {
       this.router.navigate(['/']);
     }
