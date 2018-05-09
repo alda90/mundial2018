@@ -72,12 +72,12 @@ export class PaisesComponent implements OnInit {
 
   }
 
-  editModal(pais: Pais) {
+  editModal(pais: Pais, idtecnico: string, idconfederacion: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar País';
     this.pais = pais;
-    this.pais.tecnico = pais.tecnico._id;
-    this.pais.confederacion = pais.confederacion._id;
+    this.pais.tecnico = idtecnico;
+    this.pais.confederacion = idconfederacion;
 
   }
 

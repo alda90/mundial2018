@@ -55,11 +55,11 @@ export class ArbitrospartComponent implements OnInit {
 
   }
 
-  editModal(arbitrospart: Arbitrospart) {
+  editModal(arbitrospart: Arbitrospart, idarbitro: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar Arbitro del Partido';
     this.arbipart = arbitrospart;
-    this.arbipart.arbitro = arbitrospart.arbitro._id;
+    this.arbipart.arbitro = idarbitro;
 
   }
 

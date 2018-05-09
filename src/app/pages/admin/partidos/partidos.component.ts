@@ -55,14 +55,14 @@ export class PartidosComponent implements OnInit {
 
   }
 
-  editModal(partido: Partido) {
+  editModal(partido: Partido, idlocal: string, idvisitante: string, idgrupo: string, idestadio: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar Partido';
     this.partido = partido;
-    this.partido.local = partido.local._id;
-    this.partido.visitante = partido.visitante._id;
-    this.partido.grupo = partido.grupo._id;
-    this.partido.estadio = partido.estadio._id;
+    this.partido.local = idlocal;
+    this.partido.visitante = idvisitante;
+    this.partido.grupo = idgrupo;
+    this.partido.estadio = idestadio;
 
   }
 

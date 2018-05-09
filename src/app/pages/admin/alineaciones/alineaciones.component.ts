@@ -61,12 +61,12 @@ export class AlineacionesComponent implements OnInit {
 
   }
 
-  editModal(alineacion: Alineacion) {
+  editModal(alineacion: Alineacion, idjugador: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar Alineación';
     this.alineacion = alineacion;
     this.alineacion.partido = this.idpartido;
-    this.alineacion.jugador = alineacion.jugador._id;
+    this.alineacion.jugador = idjugador;
     this.alineacion.pais = this.idpais;
 
   }

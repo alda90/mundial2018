@@ -55,12 +55,12 @@ export class EstadisticasComponent implements OnInit {
 
   }
 
-  editModal(estadistica: Estadistica) {
+  editModal(estadistica: Estadistica, idpais: string, idgrupo: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar Estadistica';
     this.estadistica = estadistica;
-    this.estadistica.pais = estadistica.pais._id;
-    this.estadistica.grupo = estadistica.grupo._id;
+    this.estadistica.pais = idpais;
+    this.estadistica.grupo = idgrupo;
 
   }
 

@@ -59,14 +59,14 @@ export class IncidenciasComponent implements OnInit {
     this.incidencia = new Incidencia('','','',this.idpartido,'','','','');
   }
 
-  editModal(incidencia: Incidencia) {
+  editModal(incidencia: Incidencia, idjugador: string, idsustituo: string, idtecnico: string) {
     this.oculto = '';
     this.tituloModal = 'Actualizar Incidencia';
     this.incidencia = incidencia;
     this.incidencia.partido = this.idpartido;
-    this.incidencia.jugador = incidencia.jugador._id;
-    this.incidencia.sustituto = incidencia.sustituto._id;
-    this.incidencia.tecnico = incidencia.tecnico._id;
+    this.incidencia.jugador = idjugador;
+    this.incidencia.sustituto = idsustituo;
+    this.incidencia.tecnico = idtecnico;
 
   }
 

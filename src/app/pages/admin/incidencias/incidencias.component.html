@@ -62,7 +62,7 @@
                                                         Min: {{ incidencia.minuto }}
                                                         <br> Nº Penal: {{ incidencia.numpenal }}
                                                     </td>
-                                                    <td><button (click)="editModal(incidencia)" type="button" class="btn btn-primary">
+                                                    <td><button (click)="editModal(incidencia, incidencia.jugador._id, incidencia.sustituto._id, incidencia.tecnico._id)" type="button" class="btn btn-primary">
                                                           <i class="fa fa-save"></i>
                                                   </button>
                                                     </td>
