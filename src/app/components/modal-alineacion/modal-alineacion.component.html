@@ -1,0 +1,48 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarAlineacion(f)">
+                    <div class="modal-body">
+
+
+                        <div class="form-group">
+                            <label>Jugador</label>
+                            <select (change)="cambioJugador($event.target.value)" [(ngModel)]="alineacion.jugador" name="jugador" class="form-control font-color" required>
+                                <option value="">Seleccione Jugador</option>
+                                <option *ngFor="let jugador of jugadores" [value]="jugador._id">
+                                  {{ jugador.nombre }}
+                                </option>
+                              </select>
+
+                            <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del recorrido</small> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label>Estatus</label>
+                            <input [(ngModel)]="alineacion.estatus" name="estatus" type="text" class="form-control font-color" placeholder="Estatus" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Capitán</label>
+                            <select [(ngModel)]="alineacion.capitan" name="capitan" class="form-control font-color" required>
+                                <option value="N">No</option>
+                                <option value="S">Sí</option>
+                              </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

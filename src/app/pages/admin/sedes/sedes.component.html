@@ -1,0 +1,71 @@
+<section id="service" class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_service_area sections">
+                    <div class="row">
+                        <div class="head_title ">
+
+                            <div class="row">
+                                <div class="col-sm-8 text-center">
+                                    <h3>Sedes</h3>
+                                    <div class="separator2"></div>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <button (click)="addModal()" type="button" class="btn btn-primary">
+                                      Nuevo
+                              </button> &nbsp;
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+
+                            <div class="main_service_content">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-dark" style="background-color:darkgrey; color: white">
+                                                <tr>
+                                                    <th> Sede</th>
+                                                    <th>Sede Inglés</th>
+                                                    <th>Sede Local</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let sede of sedes">
+                                                    <td>
+                                                        {{ sede.sede}}
+                                                    </td>
+                                                    <td>
+                                                        {{ sede.sedeingles }}
+                                                    </td>
+                                                    <td> {{ sede.sedelocal}} </td>
+                                                    <td><button (click)="editModal(sede)" type="button" class="btn btn-primary">
+                                                          <i class="fa fa-save"></i>
+                                                  </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-modal-sede (termino)="terminar($event)" [titulo]="tituloModal" [oculto]="oculto" [sede]="sede"></app-modal-sede>

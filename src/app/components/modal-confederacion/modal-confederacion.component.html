@@ -1,0 +1,65 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarConfederacion(f)">
+                    <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label>Confederacion</label>
+                                <input [(ngModel)]="confederacion.confederacion" name="nombre" type="text" class="form-control font-color" placeholder="Nombre Confederacion" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Fundación</label>
+                                <input [(ngModel)]="confederacion.fundacion" name="fundacion" type="text" class="form-control font-color" placeholder="Fundación" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label>Siglas</label>
+                                <input [(ngModel)]="confederacion.siglas" name="siglas" type="text" class="form-control font-color" placeholder="Siglas" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Ácronimo</label>
+                                <input [(ngModel)]="confederacion.acronimo" name="acronimo" type="text" class="form-control font-color" placeholder="Ácronimo" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label>Sede</label>
+                                <input [(ngModel)]="confederacion.sede" name="sede" type="text" class="form-control font-color" placeholder="Sede" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label>Ámbito</label>
+                                <input [(ngModel)]="confederacion.ambito" name="ambito" type="text" class="form-control font-color" placeholder="Ámbito Confederacion" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Presidente</label>
+                                <input [(ngModel)]="confederacion.presidente" name="presidente" type="text" class="form-control font-color" placeholder="Presidente" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del confederacion</small> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

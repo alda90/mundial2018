@@ -1,0 +1,61 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarTecnico(f)">
+                    <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label>Nombre</label>
+                                <input [(ngModel)]="tecnico.nombre" name="nombre" type="text" class="form-control font-color" placeholder="Nombre Técnico" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del tecnico</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>País</label>
+                                <input [(ngModel)]="tecnico.pais" name="pais" type="text" class="form-control font-color" placeholder="País" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del tecnico</small> -->
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Nombre Completo</label>
+                                <input [(ngModel)]="tecnico.nombrecompleto" name="nombrecompleto" type="text" class="form-control font-color" placeholder="Nombre Completo" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del tecnico</small> -->
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Nombre Local</label>
+                                <input [(ngModel)]="tecnico.nombrelocal" name="nombrelocal" type="text" class="form-control font-color" placeholder="Nombre Local" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del tecnico</small> -->
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Lugar de Nacimiento</label>
+                                <input [(ngModel)]="tecnico.nacimiento" name="nacimiento" type="text" class="form-control font-color" placeholder="Lugar de Nacimiento" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del tecnico</small> -->
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Fecha de Nacimiento</label>
+                                <input [(ngModel)]="tecnico.fechanac" name="fechanac" type="text" class="form-control font-color" placeholder="Fecha de Nacimiento" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del tecnico</small> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarSede(f)">
+                    <div class="modal-body">
+
+
+                        <div class="form-group">
+                            <label>Árbitro</label>
+                            <input [(ngModel)]="sede.sede" name="sede" type="text" class="form-control font-color" placeholder="Sede" required>
+                            <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del recorrido</small> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label>País</label>
+                            <input [(ngModel)]="sede.sedeingles" name="sedeingles" type="text" class="form-control font-color" placeholder="Sede en Inglés" required>
+                            <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del recorrido</small> -->
+                        </div>
+                        <div class="form-group">
+                            <label>Posición</label>
+                            <input [(ngModel)]="sede.sedelocal" name="sedelocal" type="text" class="form-control font-color" placeholder="Sede Local" required>
+                            <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del recorrido</small> -->
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

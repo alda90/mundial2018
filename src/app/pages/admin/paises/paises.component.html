@@ -1,0 +1,157 @@
+<section id="service" class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_service_area sections">
+                    <div class="row">
+                        <div class="head_title ">
+
+                            <div class="row">
+                                <div class="col-sm-8 text-center">
+                                    <h3>Paises</h3>
+                                    <div class="separator2"></div>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <button (click)="addModal()" type="button" class="btn btn-primary">
+                                      Nuevo
+                              </button> &nbsp;
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+
+                            <div class="main_service_content">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-dark" style="background-color:darkgrey; color: white">
+                                                <tr>
+                                                    <th> </th>
+                                                    <th>País</th>
+                                                    <th>Estadísticas</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let pais of paises">
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <img (click)="actualizarBandera(pais)" [src]="pais.bandera | imagen:'banderas'" class="w200 img-circle pointer">
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <img (click)="actualizarEscudoFed(pais)" [src]="pais.escudofed | imagen:'escudosfed'" class="img-escudo pointer">
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                {{ pais.federacion }} <br> {{ pais.federacioningles }} <br> {{ pais.federacionlocal }} <br> {{ pais.nombrelocal }} <br>
+                                                                <p class="text-info">Participaciones :</p> {{ pais.participaciones }}
+                                                            </div>
+
+                                                        </div>
+
+                                                    </td>
+                                                    <td style="width: 200px">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="text-info"> {{ pais.pais }} </p>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                {{ pais.nombreingles }}
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                {{ pais.nombrelocal }}
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                {{ pais.nombreoficial }}
+                                                            </div>
+
+                                                        </div>
+
+                                                        <p class="text-info"> {{ pais.confederacion.siglas }} </p>
+                                                        <br>
+
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="text-info"> Código:</p> {{ pais.codigo }}
+                                                                <p class="text-info">Continente :</p> {{ pais.continente }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <p class="text-info"> Goleador:</p> {{ pais.goleador}} ({{ pais.numgoles }})
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <p class="text-info"> Técnico:</p> {{ pais.tecnico.nombre }}
+                                                            </div>
+
+                                                        </div>
+
+                                                        <p class="text-info"> Títulos :</p> {{ pais.titulos}}
+                                                        <p class="text-info"> Clasificación :</p> {{ pais.clasificacion}}
+
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <img (click)="actualizarUniforme(pais)" [src]="pais.uniforme | imagen:'uniforme'" class="img-escudo pointer">
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <img (click)="actualizarUniformeV(pais)" [src]="pais.uniformev | imagen:'uniformev'" class="img-escudo pointer">
+                                                            </div>
+
+                                                        </div>
+                                                    </td>
+                                                    <td><button (click)="editModal(pais)" type="button" class="btn btn-primary">
+                                                          <i class="fa fa-save"></i>
+                                                  </button>
+                                                        <br> <br>
+                                                        <img (click)="actualizarEscudo(pais)" [src]="pais.escudo | imagen:'escudos'" class="img-escudo pointer">
+                                                        <br> <br>
+                                                        <button [routerLink]="['/admin/jugadores',pais._id]" class="btn btn-info">
+                                                            <i class="fa fa-users"></i>
+                                                          </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-modal-pais (termino)="terminar($event)" [titulo]="tituloModal" [oculto]="oculto" [pais]="pais"></app-modal-pais>

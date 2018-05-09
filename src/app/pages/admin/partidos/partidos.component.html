@@ -1,0 +1,116 @@
+<section id="service" class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_service_area sections">
+                    <div class="row">
+                        <div class="head_title ">
+
+                            <div class="row">
+                                <div class="col-sm-8 text-center">
+                                    <h3>Partidos</h3>
+                                    <div class="separator2"></div>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <button (click)="addModal()" type="button" class="btn btn-primary">
+                                      Nuevo
+                              </button> &nbsp;
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+
+                            <div class="main_service_content">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-dark" style="background-color:darkgrey; color: white">
+                                                <tr>
+                                                    <th> Partido</th>
+                                                    <th>Equipos</th>
+                                                    <th>Estatus</th>
+                                                    <th>Información</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let partido of partidos">
+                                                    <td>
+                                                        {{ partido.partido }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{ partido.local.pais }}
+
+                                                                <br> {{ partido.visitante.pais }}
+
+
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                {{ partido.goleslocal }} <br> {{ partido.golesvisitante }}
+
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                P. {{ partido.goleslocalp }} <br> p. {{ partido.golesvisitantep }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-info"> Ganador:</p> {{ partido.ganador }}
+                                                        <p class="text-info">Estatus:</p> {{ partido.estatus }}
+                                                        <p class="text-info">Conclusión:</p> {{ partido.conclusion }}
+                                                    </td>
+                                                    <td>
+                                                        {{ partido.fase }} <br> {{ partido.fecha }}, {{ partido.hora }} <br> {{ partido.grupo.grupo}} <br> {{ partido.estadio.estadio }} <br>
+                                                        <button (click)="navigateInc('arbitrospart', partido._id, partido.partido)" type="button" class="btn btn-info btn-sm">
+                                                            Árbitros
+                                                    </button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <button (click)="editModal(partido)" type="button" class="btn btn-primary">
+                                                                        <i class="fa fa-save"></i>
+                                                                </button>
+                                                            <button (click)="navigateInc('incidencias', partido._id, partido.partido)" type="button" class="btn btn-info btn-sm">
+                                                                      Incidencias 
+                                                              </button>
+                                                        </div>
+                                                        <div class="row">
+                                                            <button (click)="navigate('alineaciones', partido._id, partido.local._id, partido.partido, partido.local.pais)" type="button" class="btn btn-info btn-sm">
+                                                                        Local <i class="fa fa-users"></i>
+                                                                </button>
+
+                                                            <button (click)="navigate('alineaciones', partido._id, partido.visitante._id, partido.partido, partido.visitante.pais)" type="button" class="btn btn-info btn-sm">
+                                                                     Visitante   <i class="fa fa-users"></i>
+                                                                </button>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-modal-partido (termino)="terminar($event)" [titulo]="tituloModal" [oculto]="oculto" [partido]="partido"></app-modal-partido>

@@ -1,0 +1,89 @@
+<section id="service" class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_service_area sections">
+                    <div class="row">
+                        <div class="head_title ">
+
+                            <div class="row">
+                                <div class="col-sm-8 text-center">
+                                    <h3>Incidencias {{ _incidenciaService.partido }} </h3>
+                                    <div class="separator2"></div>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <button (click)="addModal()" type="button" class="btn btn-primary">
+                                      Nuevo
+                              </button> &nbsp;
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+
+                            <div class="main_service_content">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-dark" style="background-color:darkgrey; color: white">
+                                                <tr>
+                                                    <th> Incidencia </th>
+                                                    <th>Elemento</th>
+                                                    <th>Datos</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let incidencia of incidencias">
+                                                    <td>
+
+                                                        {{ incidencia.incidencia }}
+                                                        <br>
+
+                                                    </td>
+                                                    <td>
+
+                                                        <div *ngIf="incidencia.jugador">
+                                                            {{ incidencia.jugador.nombre }}
+                                                        </div>
+
+                                                        <div *ngIf="incidencia.tecnico">
+                                                            {{ incidencia.tecnico.nombre }}
+                                                        </div>
+                                                        <div *ngIf="incidencia.incidencia==='Sustitución'">
+
+                                                            <br>
+                                                            <p> Ingresa: </p> {{ incidencia.sustituto.nombre }}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Min: {{ incidencia.minuto }}
+                                                        <br> Nº Penal: {{ incidencia.numpenal }}
+                                                    </td>
+                                                    <td><button (click)="editModal(incidencia)" type="button" class="btn btn-primary">
+                                                          <i class="fa fa-save"></i>
+                                                  </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-modal-incidencia (termino)="terminar($event)" [titulo]="tituloModal" [oculto]="oculto" [incidencia]="incidencia" [idpartido]="idpartido"></app-modal-incidencia>

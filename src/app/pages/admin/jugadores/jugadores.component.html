@@ -1,0 +1,79 @@
+<section id="service" class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_service_area sections">
+                    <div class="row">
+                        <div class="head_title ">
+
+                            <div class="row">
+                                <div class="col-sm-8 text-center">
+                                    <h3>Jugadores</h3>
+                                    <div class="separator2"></div>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <button (click)="addModal()" type="button" class="btn btn-primary">
+                                      Nuevo
+                              </button> &nbsp;
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+
+                            <div class="main_service_content">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-dark" style="background-color:darkgrey; color: white">
+                                                <tr>
+                                                    <th> </th>
+                                                    <th>Nombre</th>
+                                                    <th>Información</th>
+                                                    <th>Nacimiento</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let jugador of jugadores">
+                                                    <td>
+                                                        <img (click)="actualizarImagen(jugador)" [src]="jugador.img | imagen:'jugadores'" class="img-foto pointer">
+                                                    </td>
+                                                    <td>
+                                                        {{ jugador.nombre }} <br> {{ jugador.nombrecompleto }} <br> {{ jugador.nombrelocal }}
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-info"> Número:</p> {{ jugador.numero }}
+                                                        <p class="text-info">Posición:</p> {{ jugador.posicion }}
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-info"> País:</p> {{ jugador.pais.pais }}
+                                                        <p class="text-info">Nacimiento :</p> {{ jugador.fechanac }} <br> {{ jugador.nacimiento}}
+                                                    </td>
+                                                    <td><button (click)="editModal(jugador)" type="button" class="btn btn-primary">
+                                                          <i class="fa fa-save"></i>
+                                                  </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-modal-jugador (termino)="terminar($event)" [titulo]="tituloModal" [oculto]="oculto" [jugador]="jugador" [pais]="idpais"></app-modal-jugador>

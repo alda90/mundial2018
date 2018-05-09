@@ -1,0 +1,97 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarEstadistia(f)">
+                    <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label>Partidos</label>
+                                <input [(ngModel)]="estadistica.partidos" name="partidos" type="text" class="form-control font-color" placeholder="Partidos" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label>Puntos</label>
+                                <input [(ngModel)]="estadistica.puntos" name="puntos" type="text" class="form-control font-color" placeholder="Puntos" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label>Anotados</label>
+                                <input [(ngModel)]="estadistica.anotados" name="anotados" type="text" class="form-control font-color" placeholder="Anotados" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label>Recibidos</label>
+                                <input [(ngModel)]="estadistica.recibidos" name="recibidos" type="text" class="form-control font-color" placeholder="Recibidos" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label>Diferencia</label>
+                                <input [(ngModel)]="estadistica.diferencia" name="diferencia" type="text" class="form-control font-color" placeholder="Diferencia" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label>Ganados</label>
+                                <input [(ngModel)]="estadistica.ganados" name="ganados" type="text" class="form-control font-color" placeholder="Ganados" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Empatados</label>
+                                <input [(ngModel)]="estadistica.empatados" name="empatados" type="text" class="form-control font-color" placeholder="Empatados" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label>Perdidos</label>
+                                <input [(ngModel)]="estadistica.perdidos" name="perdidos" type="text" class="form-control font-color" placeholder="Perdidos" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del estadistica</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>País</label>
+                                <select (change)="cambioPais($event.target.value)" [(ngModel)]="estadistica.pais" name="pais" class="form-control font-color" required>
+                                <option value="">Seleccione País</option>
+                                <option *ngFor="let pais of paises" [value]="pais._id">
+                                  {{ pais.pais }}
+                                </option>
+                              </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label>Grupo</label>
+                                <select (change)="cambioGrupo($event.target.value)" [(ngModel)]="estadistica.grupo" name="grupo" class="form-control font-color" required>
+                              <option value="">Seleccione Grupo</option>
+                              <option *ngFor="let grupo of grupos" [value]="grupo._id">
+                                {{ grupo.grupo }}
+                              </option>
+                            </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

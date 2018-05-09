@@ -1,0 +1,77 @@
+<section id="service" class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_service_area sections">
+                    <div class="row">
+                        <div class="head_title ">
+
+                            <div class="row">
+                                <div class="col-sm-8 text-center">
+                                    <h3>Confederaciones</h3>
+                                    <div class="separator2"></div>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <button (click)="addModal()" type="button" class="btn btn-primary">
+                                        Nuevo
+                                </button> &nbsp;
+                                </div>
+                                <div class="col-sm-1 text-right">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+
+                            <div class="main_service_content">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="thead-dark" style="background-color:darkgrey; color: white">
+                                                <tr>
+                                                    <th> Siglas</th>
+                                                    <th>Confederación</th>
+                                                    <th>Información</th>
+                                                    <th>Presidente</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let confederacion of confederaciones">
+                                                    <td>
+                                                        {{ confederacion.siglas }}
+                                                    </td>
+                                                    <td>
+                                                        {{ confederacion.confederacion }}
+                                                        <p class="text-info">Fundación:</p> {{ confederacion.fundacion }}
+                                                    </td>
+                                                    <td>
+                                                        <p class="text-info"> Sede:</p> {{ confederacion.sede }}
+                                                        <p class="text-info">Ámbito :</p> {{ confederacion.ambito }}
+                                                    </td>
+                                                    <td> {{ confederacion.presidente }} </td>
+                                                    <td><button (click)="editModal(confederacion)" type="button" class="btn btn-primary">
+                                                            <i class="fa fa-save"></i>
+                                                    </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-modal-confederacion (termino)="terminar($event)" [titulo]="tituloModal" [oculto]="oculto" [confederacion]="confederacion"></app-modal-confederacion>

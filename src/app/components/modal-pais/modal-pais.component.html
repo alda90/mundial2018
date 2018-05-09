@@ -1,0 +1,131 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarPais(f)">
+                    <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>País</label>
+                                <input [(ngModel)]="pais.pais" name="pais" type="text" class="form-control font-color" placeholder="País" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>País en Ingles</label>
+                                <input [(ngModel)]="pais.nombreingles" name="nombreingles" type="text" class="form-control font-color" placeholder="País en Inglés" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>País Oficial</label>
+                                <input [(ngModel)]="pais.nombreoficial" name="nombreoficial" type="text" class="form-control font-color" placeholder="País Oficial" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>País en Local</label>
+                                <input [(ngModel)]="pais.nombrelocal" name="nombrelocal" type="text" class="form-control font-color" placeholder="País Local" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Federación</label>
+                                <input [(ngModel)]="pais.federacion" name="federacion" type="text" class="form-control font-color" placeholder="Federación" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Federación</label>
+                                <input [(ngModel)]="pais.federacioningles" name="federacioningles" type="text" class="form-control font-color" placeholder="Federación en Inglés" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Federación</label>
+                                <input [(ngModel)]="pais.federacionlocal" name="federacionlocal" type="text" class="form-control font-color" placeholder="Federación Local" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>Código FIFA</label>
+                                <input [(ngModel)]="pais.codigo" name="codigo" type="text" class="form-control font-color" placeholder="Código" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Máximo Goleador</label>
+                                <input [(ngModel)]="pais.goleador" name="goleador" type="text" class="form-control font-color" placeholder="Goleador" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Nº Goles</label>
+                                <input [(ngModel)]="pais.numgoles" name="numgoles" type="text" class="form-control font-color" placeholder="Nº Goles" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Participaciones</label>
+                                <input [(ngModel)]="pais.participaciones" name="participaciones" type="text" class="form-control font-color" placeholder="Participaciones" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label>Clasificación</label>
+                                <textarea [(ngModel)]="pais.clasificacion" name="clasificacion" class="form-control font-color" placeholder="Clasificación" rows="2" required></textarea>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Títulos</label>
+                                <textarea [(ngModel)]="pais.titulos" name="titulos" class="form-control font-color" placeholder="Títulos" rows="2" required></textarea>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Continente</label>
+                                <input [(ngModel)]="pais.continente" name="continente" type="text" class="form-control font-color" placeholder="Continente" required>
+                                <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del pais</small> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Confederación</label>
+                                <select (change)="cambioConfederacion($event.target.value)" [(ngModel)]="pais.confederacion" name="confederacion" class="form-control font-color" required>
+                                    <option value="">Seleccione Confederación</option>
+                                    <option *ngFor="let confederacion of confederaciones" [value]="confederacion._id">
+                                      {{ confederacion.siglas }}
+                                    </option>
+                                  </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Técnico</label>
+                                <select (change)="cambioTecnico($event.target.value)" [(ngModel)]="pais.tecnico" name="tecnico" class="form-control font-color" required>
+                                    <option value="">Seleccione Técnico</option>
+                                    <option *ngFor="let tecnico of tecnicos" [value]="tecnico._id">
+                                      {{ tecnico.nombre }}
+                                    </option>
+                                  </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="black-back animated fadeIn" [ngClass]="oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ titulo }}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="guardarIncidencia(f)">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>Incidencia</label>
+                            <input [(ngModel)]="incidencia.incidencia" name="incidencia" type="text" class="form-control font-color" placeholder="incidencia" required>
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label>Jugador</label>
+                                <select (change)="cambioJugador($event.target.value)" [(ngModel)]="incidencia.jugador" name="jugador" class="form-control font-color">
+                                    <option value="">Seleccione Jugador</option>
+                                    <option *ngFor="let alineacion of alineaciones" [value]="alineacion.jugador._id">
+                                      {{ alineacion.jugador.nombre }}
+                                    </option>
+                                  </select>
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Sustituto</label>
+                                <select (change)="cambioSustituto($event.target.value)" [(ngModel)]="incidencia.sustituto" name="sutituto" class="form-control font-color">
+                                    <option value="">Seleccione Jugador</option>
+                                    <option *ngFor="let alineacion of alineaciones" [value]="alineacion.jugador._id">
+                                      {{ alineacion.jugador.nombre }}
+                                    </option>
+                                  </select>
+
+                            </div>
+
+                            <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del recorrido</small> -->
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-3">
+                                <label>Minuto</label>
+                                <input [(ngModel)]="incidencia.minuto" name="minuto" type="text" class="form-control font-color" placeholder="Minuto" required>
+
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Nº Penal</label>
+                                <input [(ngModel)]="incidencia.numpenal" name="numpenal" type="text" class="form-control font-color" placeholder="Nº Penal">
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Técnico</label>
+                                <select (change)="cambioTecnico($event.target.value)" [(ngModel)]="incidencia.tecnico" name="tecnico" class="form-control font-color">
+                                    <option value="">Seleccione Técnico</option>
+                                    <option *ngFor="let tecnico of tecnicos" [value]="tecnico._id">
+                                      {{ tecnico.nombre }}
+                                    </option>
+                                  </select>
+
+                            </div>
+
+                            <!-- <small class="form-text text-muted" class="text-danger">Debe ingresar el nombre del recorrido</small> -->
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
