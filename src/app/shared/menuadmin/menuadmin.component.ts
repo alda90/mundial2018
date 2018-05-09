@@ -27,4 +27,8 @@ export class MenuadminComponent implements OnInit {
 
   }
 
+  logOut(){
+    this._usuarioService.logout();
+  }
+
 }
