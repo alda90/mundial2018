@@ -6,6 +6,8 @@ import { Grupo } from '../../models/grupo.model';
 import { EstadisticaService } from '../../services/estadistica/estadistica.service';
 import { PaisService } from '../../services/pais/pais.service';
 import { GrupoService } from '../../services/grupo/grupo.service';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/service.index';
 
 @Component({
   selector: 'app-modal-estadistica',
@@ -27,10 +29,14 @@ export class ModalEstadisticaComponent implements OnInit {
   grupo: Grupo = new Grupo('','');
   grupos: Grupo[] = [];
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
     public _estadisticaService: EstadisticaService,
     public _paisService: PaisService,
-    public _grupoService: GrupoService
+    public _grupoService: GrupoService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
@@ -38,6 +44,18 @@ export class ModalEstadisticaComponent implements OnInit {
         .subscribe(paises => this.paises = paises);
     this._grupoService.cargarGrupos()
         .subscribe(grupos => this.grupos = grupos);
+
+        this.usuario = this._usuarioService.usuario;
+        if (this.usuario === null) {
+          this.admin = false;
+        } else {
+          if (this.usuario.tipo === 'ADMINISTRADOR') {
+    
+            this.admin = true;
+          } else {
+            this.admin = false;
+          }
+        }
   }
 
   guardarEstadistia(f: NgForm) {

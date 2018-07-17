@@ -4,8 +4,9 @@ import { Tecnico } from '../../models/tecnico.model';
 import { Confederacion } from '../../models/confederacion.model';
 import { PaisService } from '../../services/pais/pais.service';
 import { TecnicoService } from '../../services/tecnico/tecnico.service';
-import { ConfederacionesService } from '../../services/service.index';
+import { ConfederacionesService, UsuarioService } from '../../services/service.index';
 import { Pais } from '../../models/pais.model';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-modal-pais',
@@ -27,10 +28,14 @@ export class ModalPaisComponent implements OnInit {
   confederacion: Confederacion = new Confederacion('','','','','','','','');
   confederaciones: Confederacion[] = [];
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
     public _paisService: PaisService,
     public _tecnicoService: TecnicoService,
-    public _confederacionService: ConfederacionesService
+    public _confederacionService: ConfederacionesService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
@@ -39,6 +44,18 @@ export class ModalPaisComponent implements OnInit {
 
     this._confederacionService.cargarConfederaciones()
           .subscribe(confederaciones => this.confederaciones = confederaciones);
+
+          this.usuario = this._usuarioService.usuario;
+          if (this.usuario === null) {
+            this.admin = false;
+          } else {
+            if (this.usuario.tipo === 'ADMINISTRADOR') {
+      
+              this.admin = true;
+            } else {
+              this.admin = false;
+            }
+          }
   }
 
   guardarPais(f: NgForm) {

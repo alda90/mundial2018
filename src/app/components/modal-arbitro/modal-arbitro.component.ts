@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Arbitro } from '../../models/arbitro.model';
-import { ArbitroService } from '../../services/service.index';
+import { ArbitroService, UsuarioService } from '../../services/service.index';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-modal-arbitro',
@@ -17,11 +18,27 @@ export class ModalArbitroComponent implements OnInit {
 
   @Output('termino') termino: EventEmitter<boolean> = new EventEmitter();
 
+  usuario: Usuario;
+  admin: Boolean;
+  
+
   constructor(
-    public _arbitroService: ArbitroService
+    public _arbitroService: ArbitroService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+    this.usuario = this._usuarioService.usuario;
+    if (this.usuario === null) {
+      this.admin = false;
+    } else {
+      if (this.usuario.tipo === 'ADMINISTRADOR') {
+
+        this.admin = true;
+      } else {
+        this.admin = false;
+      }
+    }
   }
 
   guardarArbitro(f: NgForm) {

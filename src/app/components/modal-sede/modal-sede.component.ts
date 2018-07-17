@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SedeService } from '../../services/sede/sede.service';
 import { Sede } from '../../models/sede.model';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/service.index';
 
 @Component({
   selector: 'app-modal-sede',
@@ -17,11 +19,26 @@ export class ModalSedeComponent implements OnInit {
 
   @Output('termino') termino: EventEmitter<boolean> = new EventEmitter();
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
-    public _sedeService: SedeService
+    public _sedeService: SedeService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+    this.usuario = this._usuarioService.usuario;
+          if (this.usuario === null) {
+            this.admin = false;
+          } else {
+            if (this.usuario.tipo === 'ADMINISTRADOR') {
+      
+              this.admin = true;
+            } else {
+              this.admin = false;
+            }
+          }
   }
 
   guardarSede(f: NgForm) {

@@ -87,7 +87,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button *ngIf="admin" type="submit" class="btn btn-primary">Save changes</button>
                         <button (click)="cerrarModal()" type="button" class="btn btn-secondary">Close</button>
                     </div>
                 </form>

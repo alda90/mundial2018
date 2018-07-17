@@ -25,13 +25,15 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                 <ul class="nav navbar-nav navbar-right">
+                                    <li *ngIf="!logueado" class="pointer"><a (click)="navigate('login')">Login</a></li>
                                     <li><a routerLinkActive="active" (click)="navigate('home')">Home</a></li>
-                                    <li><a routerLinkActive="active">Matches</a></li>
-                                    <li><a routerLinkActive="active">Groups</a></li>
-                                    <li *ngIf="admin" class="pointer"><a routerLinkActive="active" (click)="navigate('admin')">Administración</a></li>
-                                    <li *ngIf="admin"><a (click)="logOut()">Salir</a></li>
-                                </ul>
 
+
+                                    <li *ngIf="logueado" class="pointer"><a routerLinkActive="active" (click)="navigate('admin')">Administración</a></li>
+                                    <li *ngIf="logueado"><a (click)="logOut()">Salir</a></li>
+
+
+                                </ul>
 
                             </div>
 

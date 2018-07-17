@@ -4,6 +4,8 @@ import { Alineacion } from '../../models/alineacion.model';
 import { Jugador } from '../../models/jugador.model';
 import { AlineacionService } from '../../services/alineacion/alineacion.service';
 import { JugadorService } from '../../services/jugador/jugador.service';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/service.index';
 
 @Component({
   selector: 'app-modal-alineacion',
@@ -21,15 +23,30 @@ export class ModalAlineacionComponent implements OnInit {
 
   jugador: Jugador = new Jugador('','','','','','','','','','');
   jugadores: Jugador[] = [];
+  usuario: Usuario;
+  admin: Boolean;
 
   constructor(
     public _alineacionService: AlineacionService,
-    public _jugadorService: JugadorService
+    public _jugadorService: JugadorService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
     this._jugadorService.jugadorPorPais(this.idpais)
         .subscribe(jugadores => this.jugadores = jugadores);
+
+    this.usuario = this._usuarioService.usuario;
+    if (this.usuario === null) {
+      this.admin = false;
+    } else {
+      if (this.usuario.tipo === 'ADMINISTRADOR') {
+
+        this.admin = true;
+      } else {
+        this.admin = false;
+      }
+    }
   }
 
   guardarAlineacion(f: NgForm) {

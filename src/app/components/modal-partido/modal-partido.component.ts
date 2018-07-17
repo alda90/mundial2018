@@ -7,7 +7,8 @@ import { Estadio } from '../../models/estadio.model';
 import { PartidoService } from '../../services/partido/partido.service';
 import { PaisService } from '../../services/pais/pais.service';
 import { GrupoService } from '../../services/grupo/grupo.service';
-import { EstadioService } from '../../services/service.index';
+import { EstadioService, UsuarioService } from '../../services/service.index';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-modal-partido',
@@ -33,11 +34,15 @@ export class ModalPartidoComponent implements OnInit {
   estadio: Estadio = new Estadio('','','','','','','');
   estadios: Estadio[] = [];
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
     public _partidoService: PartidoService,
     public _paisService: PaisService,
     public _grupoService: GrupoService,
-    public _estadioService: EstadioService
+    public _estadioService: EstadioService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
@@ -47,6 +52,18 @@ export class ModalPartidoComponent implements OnInit {
         .subscribe(grupos => this.grupos = grupos);
     this._paisService.cargarPaises()
         .subscribe(paises => this.paises = paises);
+
+        this.usuario = this._usuarioService.usuario;
+          if (this.usuario === null) {
+            this.admin = false;
+          } else {
+            if (this.usuario.tipo === 'ADMINISTRADOR') {
+      
+              this.admin = true;
+            } else {
+              this.admin = false;
+            }
+          }
     
   }
 

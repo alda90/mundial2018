@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SubirArchivoService } from '../../services/service.index';
+import { SubirArchivoService, UsuarioService } from '../../services/service.index';
 import { ModalUploadService } from './modal-upload.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-modal-upload',
@@ -12,12 +13,27 @@ export class ModalUploadComponent implements OnInit {
   imagenSubir: File;
   imagenTemp: string;
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
     public _subirchivoService: SubirArchivoService,
-    public _modalUploadService: ModalUploadService
+    public _modalUploadService: ModalUploadService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+    this.usuario = this._usuarioService.usuario;
+          if (this.usuario === null) {
+            this.admin = false;
+          } else {
+            if (this.usuario.tipo === 'ADMINISTRADOR') {
+      
+              this.admin = true;
+            } else {
+              this.admin = false;
+            }
+          }
   }
 
   subirImagen() {

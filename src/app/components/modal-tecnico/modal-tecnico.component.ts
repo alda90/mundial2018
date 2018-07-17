@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Tecnico } from '../../models/tecnico.model';
 import { TecnicoService } from '../../services/tecnico/tecnico.service';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/service.index';
 
 @Component({
   selector: 'app-modal-tecnico',
@@ -17,11 +19,27 @@ export class ModalTecnicoComponent implements OnInit {
 
   @Output('termino') termino: EventEmitter<boolean> = new EventEmitter();
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
-    public _tecnicoService: TecnicoService
+    public _tecnicoService: TecnicoService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+
+    this.usuario = this._usuarioService.usuario;
+          if (this.usuario === null) {
+            this.admin = false;
+          } else {
+            if (this.usuario.tipo === 'ADMINISTRADOR') {
+      
+              this.admin = true;
+            } else {
+              this.admin = false;
+            }
+          }
   }
 
   guardarTecnico(f: NgForm) {

@@ -4,6 +4,8 @@ import { Arbitrospart } from '../../models/arbitrospart.model';
 import { Arbitro } from '../../models/arbitro.model';
 import { ArbitrospartService } from '../../services/arbitrospart/arbitrospart.service';
 import { ArbitroService } from '../../services/arbitro/arbitro.service';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/service.index';
 
 
 @Component({
@@ -22,15 +24,29 @@ export class ModalArbitrospartComponent implements OnInit {
 
   arbitro: Arbitro = new Arbitro('','','','','');
   arbitros: Arbitro[] = [];
+  usuario: Usuario;
+  admin: Boolean;
 
   constructor(
     public _arbitropartService: ArbitrospartService,
-    public _arbitroService: ArbitroService
+    public _arbitroService: ArbitroService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
-    this._arbitroService.cargarArbitros()
-        .subscribe(arbitros => this.arbitros = arbitros);
+    this._arbitroService.cargarArbitros().subscribe(arbitros => this.arbitros = arbitros);
+    
+        this.usuario = this._usuarioService.usuario;
+        if (this.usuario === null) {
+          this.admin = false;
+        } else {
+          if (this.usuario.tipo === 'ADMINISTRADOR') {
+    
+            this.admin = true;
+          } else {
+            this.admin = false;
+          }
+        }
   }
 
   guardarArbitropart(f: NgForm) {

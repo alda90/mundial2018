@@ -4,10 +4,11 @@ import { Incidencia } from '../../models/incidencia.model';
 import { Jugador } from '../../models/jugador.model';
 import { Alineacion } from '../../models/alineacion.model';
 import { IncidenciaService } from '../../services/incidencia/incidencia.service';
-import { AlineacionService } from '../../services/service.index';
+import { AlineacionService, UsuarioService } from '../../services/service.index';
 import { Tecnico } from '../../models/tecnico.model';
 import { TecnicoService } from '../../services/tecnico/tecnico.service';
 import { JugadorService } from '../../services/jugador/jugador.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-modal-incidencia',
@@ -31,11 +32,15 @@ export class ModalIncidenciaComponent implements OnInit {
   tecnicos: Tecnico[] = [];
   alineaciones: Alineacion[] = [];
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
     public _incidenciaService: IncidenciaService,
     public _alineacionService: AlineacionService,
     public _tecnicoService: TecnicoService,
-    public _jugadorService: JugadorService
+    public _jugadorService: JugadorService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
@@ -43,6 +48,18 @@ export class ModalIncidenciaComponent implements OnInit {
         .subscribe(alineaciones => this.alineaciones = alineaciones);
     this._tecnicoService.cargarTecnicos()
         .subscribe(tecnicos => this.tecnicos = tecnicos);
+
+        this.usuario = this._usuarioService.usuario;
+        if (this.usuario === null) {
+          this.admin = false;
+        } else {
+          if (this.usuario.tipo === 'ADMINISTRADOR') {
+    
+            this.admin = true;
+          } else {
+            this.admin = false;
+          }
+        }
   }
 
   guardarIncidencia(f: NgForm) {

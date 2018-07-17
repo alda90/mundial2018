@@ -4,6 +4,8 @@ import { Estadio } from '../../models/estadio.model';
 import { EstadioService } from '../../services/estadio/estadio.service';
 import { SedeService } from '../../services/sede/sede.service';
 import { Sede } from '../../models/sede.model';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/service.index';
 
 @Component({
   selector: 'app-modal-estadio',
@@ -22,14 +24,30 @@ export class ModalEstadioComponent implements OnInit {
   sede: Sede = new Sede('','','','');
   sedes: Sede[] = [];
 
+  usuario: Usuario;
+  admin: Boolean;
+
   constructor(
     public _estadioService: EstadioService,
-    public _sedeService: SedeService
+    public _sedeService: SedeService,
+    public _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
     this._sedeService.cargarSedes()
         .subscribe(sedes => this.sedes = sedes);
+
+        this.usuario = this._usuarioService.usuario;
+        if (this.usuario === null) {
+          this.admin = false;
+        } else {
+          if (this.usuario.tipo === 'ADMINISTRADOR') {
+    
+            this.admin = true;
+          } else {
+            this.admin = false;
+          }
+        }
   }
 
   guardarEstadio(f: NgForm) {
